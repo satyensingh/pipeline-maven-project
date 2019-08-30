@@ -20,7 +20,10 @@ pipeline {
 		}
 		stage ('Deploy to Staging'){
 			steps {
-				echo 'Deploying to staging server'
+				echo 'Deploying to staging server need manual approval'
+				timeout(2) {
+					input 'Approve Production Deployment?'
+				}
 				deploy adapters: [tomcat8(credentialsId: 'fc29fbea-a440-4146-8bf0-dd8e0e199d22', path: '', url: 'http://localhost:8989')], contextPath: null, war: '**/*.war'
 			}
 			post {
