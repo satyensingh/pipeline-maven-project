@@ -2,14 +2,9 @@ pipeline {
 	agent any
 
 	stages {
-		stage ('Hello'){
+		stage ('Build'){
 			steps {
-				echo 'Hello World!'
-			}
-			post {
-				success {
-					echo 'Done!'
-				}
+				bat script: 'mvn clean package'
 			}
 		}
 	}
